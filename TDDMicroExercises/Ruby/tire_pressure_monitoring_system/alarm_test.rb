@@ -10,6 +10,12 @@ class AlarmTest < Minitest::Test
     alarm
   end
 
+  def test_old_way_creating_alarm_without_sensor
+    alarm = Alarm.new
+    alarm.check
+    assert_kind_of String, alarm.alarm_on
+  end
+
   def test_pressure_in_range
     alarm = create_alarm_set_pressure_and_check(20)
     assert_equal alarm.alarm_on, false
